@@ -13,71 +13,23 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="src">
-      <UniqueIdentifier>{a252f86d-64ed-422f-a25e-e31fcf628154}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="assests">
-      <UniqueIdentifier>{5f8fe0d5-b4dc-4bc0-82fd-468fdbb23d8f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\camera">
-      <UniqueIdentifier>{b054036d-f797-4757-b1ac-e3db5038fe00}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\input">
-      <UniqueIdentifier>{420e2400-be3b-4f29-96ab-8c076f167164}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\renderer">
-      <UniqueIdentifier>{a2ae96a4-e809-49de-8c20-9002efe83f88}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\collision">
-      <UniqueIdentifier>{51d3f3cb-6911-4e55-987b-5c964a4ef227}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\lighting">
-      <UniqueIdentifier>{cfbe35d7-3f1c-4473-a307-54bbcdf4f139}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\scene">
-      <UniqueIdentifier>{62fa2cb5-c358-46f0-b3f7-d7be13451676}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="assests\shaders">
-      <UniqueIdentifier>{e4252050-9633-4341-8856-55078c67e231}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="assests\textures">
-      <UniqueIdentifier>{798cea7b-6037-41e1-a27f-57ddd4bacfb4}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
-    <None Include="..\assets\textures\.gitkeep">
-      <Filter>assests\textures</Filter>
-    </None>
-    <None Include="..\assets\shaders\.gitkeep">
-      <Filter>assests\shaders</Filter>
-    </None>
-    <None Include="..\src\camera\.gitkeep">
-      <Filter>src\camera</Filter>
-    </None>
-    <None Include="..\src\input\.gitkeep">
-      <Filter>src\input</Filter>
-    </None>
-    <None Include="..\src\collision\.gitkeep">
-      <Filter>src\collision</Filter>
-    </None>
-    <None Include="..\src\lighting\.gitkeep">
-      <Filter>src\lighting</Filter>
-    </None>
-    <None Include="..\src\scene\.gitkeep">
-      <Filter>src\scene</Filter>
-    </None>
-    <None Include="..\src\renderer\.gitkeep">
-      <Filter>src\renderer</Filter>
-    </None>
+    <None Include="assets\shaders\.gitkeep" />
+    <None Include="assets\textures\.gitkeep" />
+    <None Include="src\camera\.gitkeep" />
+    <None Include="src\collision\.gitkeep" />
+    <None Include="src\input\.gitkeep" />
+    <None Include="src\lighting\.gitkeep" />
+    <None Include="src\renderer\.gitkeep" />
+    <None Include="src\scene\.gitkeep" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="external\GLAD\src\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="external\GLAD\include\KHR\khrplatform.h">

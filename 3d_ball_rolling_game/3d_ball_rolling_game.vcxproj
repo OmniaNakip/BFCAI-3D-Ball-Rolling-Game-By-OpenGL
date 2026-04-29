@@ -146,20 +146,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="external\GLAD\src\glad.c" />
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)external\GLAD\include;$(ProjectDir)external\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\assets\shaders\.gitkeep" />
-    <None Include="..\assets\textures\.gitkeep" />
     <None Include="..\README.md" />
-    <None Include="..\src\camera\.gitkeep" />
-    <None Include="..\src\collision\.gitkeep" />
-    <None Include="..\src\input\.gitkeep" />
-    <None Include="..\src\lighting\.gitkeep" />
-    <None Include="..\src\renderer\.gitkeep" />
-    <None Include="..\src\scene\.gitkeep" />
+    <None Include="assets\shaders\.gitkeep" />
+    <None Include="assets\textures\.gitkeep" />
+    <None Include="src\camera\.gitkeep" />
+    <None Include="src\collision\.gitkeep" />
+    <None Include="src\input\.gitkeep" />
+    <None Include="src\lighting\.gitkeep" />
+    <None Include="src\renderer\.gitkeep" />
+    <None Include="src\scene\.gitkeep" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="external\GLAD\include\glad\glad.h" />
