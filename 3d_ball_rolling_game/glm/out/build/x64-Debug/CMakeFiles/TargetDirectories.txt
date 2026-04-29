@@ -1,0 +1,2 @@
+C:/Users/ELASAD/source/repos/BFCAI-3D-Ball-Rolling-Game-By-OpenGL/3d_ball_rolling_game/glm/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/ELASAD/source/repos/BFCAI-3D-Ball-Rolling-Game-By-OpenGL/3d_ball_rolling_game/glm/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
