@@ -119,7 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)external\GLAD\include;$(ProjectDir)external\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)external\GLAD\include;$(ProjectDir)external\glfw-3.4.bin.WIN64\include;C:\Users\ELASAD\source\repos\BFCAI-3D-Ball-Rolling-Game-By-OpenGL\3d_ball_rolling_game\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,6 +148,7 @@
     <ClCompile Include="external\GLAD\src\glad.c" />
     <ClCompile Include="src\main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)external\GLAD\include;$(ProjectDir)external\glfw-3.4.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\ELASAD\source\repos\BFCAI-3D-Ball-Rolling-Game-By-OpenGL\3d_ball_rolling_game;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +163,7 @@
     <None Include="src\scene\.gitkeep" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="assets\shaders\shader.h" />
     <ClInclude Include="external\GLAD\include\glad\glad.h" />
     <ClInclude Include="external\GLAD\include\KHR\khrplatform.h" />
   </ItemGroup>
