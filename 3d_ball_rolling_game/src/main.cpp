@@ -5,6 +5,9 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 #include "shader.h"
+#include "Ball.h"
+#include "Scene.h"
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
@@ -36,6 +39,8 @@ int main()
     // Configure global opengl state
     glEnable(GL_DEPTH_TEST);
     Shader ourShader("shaders/shader.vert", "shaders/shader.frag");
+    Ball myBall;
+    Scene gameScene;
     while (!glfwWindowShouldClose(window))
     {
         // Per-frame time logic
@@ -56,12 +61,13 @@ int main()
         glm::mat4 view = glm::mat4(1.0f); // Camera view matrix (Member 2 will update this)
         glm::mat4 model = glm::mat4(1.0f); // Object model matrix (Member 3 will update this)
 
-        // TODO: Add Draw Calls here
-
+        gameScene.Draw(ourShader.ID);
+        gameScene.ball.Draw();
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
     glfwTerminate();
+    gameScene.CleanUp();
     return 0;
 }
