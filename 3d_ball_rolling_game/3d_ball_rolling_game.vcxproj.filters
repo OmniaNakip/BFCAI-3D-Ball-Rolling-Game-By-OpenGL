@@ -18,7 +18,9 @@
     <None Include="..\README.md" />
     <None Include="assets\shaders\.gitkeep" />
     <None Include="assets\textures\.gitkeep" />
-    <None Include="src\camera\.gitkeep" />
+    <None Include="src\camera\.gitkeep">
+      <Filter>Source Files</Filter>
+    </None>
     <None Include="src\collision\.gitkeep" />
     <None Include="src\input\.gitkeep" />
     <None Include="src\lighting\.gitkeep" />
@@ -462,6 +464,9 @@
     <ClCompile Include="src\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\camera\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="glm\detail\glm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -483,6 +488,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\camera\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Ground.h">

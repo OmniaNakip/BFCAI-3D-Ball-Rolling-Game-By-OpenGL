@@ -14,8 +14,12 @@ public:
 
     // Starting position (Member 4 reads this to move the ball)
     glm::vec3 position;
+    glm::vec3 velocity;
+    float moveSpeed;
+    float friction;
 
     Ball(float radius = 0.5f, glm::vec3 startPos = glm::vec3(0.0f, 0.5f, 0.0f));
+    void Update(float deltaTime);
     void Draw();
     void CleanUp();
 };

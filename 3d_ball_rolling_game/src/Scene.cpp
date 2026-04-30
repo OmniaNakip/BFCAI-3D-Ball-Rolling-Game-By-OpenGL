@@ -15,21 +15,20 @@ void Scene::Draw(unsigned int shaderProgram)
 {
     glm::mat4 model;
 
-    // --- Ground ---
+    glUniform3f(glGetUniformLocation(shaderProgram, "objectColor"), 0.3f, 0.6f, 0.3f);
     model = glm::mat4(1.0f);
     glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
     ground.Draw();
 
-    // --- Ball ---
-    // Member 4 updates ball.position every frame to move it
+    glUniform3f(glGetUniformLocation(shaderProgram, "objectColor"), 0.9f, 0.2f, 0.2f);
     model = glm::mat4(1.0f);
     model = glm::translate(model, ball.position);
     glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));
     ball.Draw();
 
-    // --- Obstacles ---
     for (int i = 0; i < obstacles.size(); i++)
     {
+        glUniform3f(glGetUniformLocation(shaderProgram, "objectColor"), 0.6f, 0.6f, 0.6f);
         model = glm::mat4(1.0f);
         model = glm::translate(model, obstacles[i].position);
         glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "model"), 1, GL_FALSE, glm::value_ptr(model));

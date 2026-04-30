@@ -7,6 +7,9 @@ Ball::Ball(float r, glm::vec3 startPos)
 {
     radius   = r;
     position = startPos;
+    velocity = glm::vec3(0.0f);
+    moveSpeed = 15.0f;
+    friction = 0.95f;
 
     vector<float>        vertices;
     vector<unsigned int> indices;
@@ -73,6 +76,12 @@ Ball::Ball(float r, glm::vec3 startPos)
     glEnableVertexAttribArray(0);
 
     glBindVertexArray(0);
+}
+
+void Ball::Update(float deltaTime)
+{
+    position += velocity * deltaTime;
+    velocity *= friction; // Simple damping
 }
 
 void Ball::Draw()
