@@ -15,6 +15,7 @@ out/
 x64/
 Debug/
 Release/
+.vs/
 
 # OS/editor
 .DS_Store

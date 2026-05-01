@@ -1,6 +1,7 @@
+#include <cstdlib> 
 #include <GL/glut.h>
 
-#include "Graphics.h"
+#include "../include/Graphics.h"
 
 namespace Graphics {
 void SetupLighting() {

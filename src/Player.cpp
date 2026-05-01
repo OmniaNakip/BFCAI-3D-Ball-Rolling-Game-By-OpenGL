@@ -1,7 +1,8 @@
+#include <cstdlib> 
 #include <GL/glut.h>
 
-#include "Constants.h"
-#include "Player.h"
+#include "../include/Constants.h"
+#include "../include/Player.h"
 
 namespace {
 PlayerState g_player;

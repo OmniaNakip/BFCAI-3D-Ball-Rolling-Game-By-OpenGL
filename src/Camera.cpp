@@ -1,7 +1,8 @@
+#include <cstdlib> 
 #include <GL/glut.h>
 
-#include "Camera.h"
-#include "Constants.h"
+#include "../include/Camera.h"
+#include "../include/Constants.h"
 
 namespace Camera {
 void Apply(int width, int height, float targetX, float targetY, float targetZ) {

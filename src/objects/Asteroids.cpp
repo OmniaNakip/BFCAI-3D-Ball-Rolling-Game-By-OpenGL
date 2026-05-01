@@ -1,8 +1,9 @@
+#include <cstdlib> 
 #include <GL/glut.h>
 #include <vector>
 
-#include "Constants.h"
-#include "objects/Asteroids.h"
+#include "../../include/Constants.h"
+#include "../../include/objects/Asteroids.h"
 
 namespace {
 struct Asteroid {

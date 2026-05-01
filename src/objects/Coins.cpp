@@ -1,9 +1,10 @@
+#include <cstdlib> 
 #include <GL/glut.h>
 #include <vector>
 
-#include "Constants.h"
-#include "Physics.h"
-#include "objects/Coins.h"
+#include "../../include/Constants.h"
+#include "../../include/Physics.h"
+#include "../../include/objects/Coins.h"
 
 namespace {
 struct Coin {

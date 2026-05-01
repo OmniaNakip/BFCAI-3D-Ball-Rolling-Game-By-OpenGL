@@ -1,8 +1,9 @@
+#include <cstdlib> 
 #include <GL/glut.h>
-#include "Constants.h"
-#include "Environment.h"
-#include "objects/Asteroids.h"
-#include "objects/Coins.h"
+#include "../include/Constants.h"
+#include "../include/Environment.h"
+#include "../include/objects/Asteroids.h"
+#include "../include/objects/Coins.h"
 
 namespace {
 float g_roadOffset = 0.0f;
