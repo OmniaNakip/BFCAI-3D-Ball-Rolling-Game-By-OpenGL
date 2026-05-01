@@ -38,8 +38,8 @@ int main(int argc, char* argv[]) {
     Constants::kClearColorG,
     Constants::kClearColorB,
     Constants::kClearColorA
-  );
-  
+    );
+    
   glutDisplayFunc(DisplayCallback);
   glutKeyboardFunc(KeyboardCallback);
   glutSpecialFunc(SpecialCallback);
