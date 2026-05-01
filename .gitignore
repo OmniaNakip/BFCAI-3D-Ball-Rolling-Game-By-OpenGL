@@ -1,0 +1,22 @@
+# Build outputs
+*.exe
+*.obj
+*.o
+*.lib
+*.dll
+*.pdb
+*.ilk
+*.log
+
+# Build folders
+build/
+bin/
+out/
+x64/
+Debug/
+Release/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
