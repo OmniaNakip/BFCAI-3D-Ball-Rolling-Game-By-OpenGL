@@ -1,25 +1,16 @@
-# EndlessRunner3D
+# 3D-Ball Rolling Game By OpenGL
 
-A simple 3D endless runner prototype built with C++ and OpenGL/GLUT.
+A 3D Ball Rolling Game built using OpenGL as a team project for BFCAI students. The game features a controllable ball moving in a 3D environment with obstacles, camera system, lighting, textures, and collision detection.
 
-## Structure
-- src/ : C++ implementation files
-- include/ : headers
-- assets/ : textures and sounds (future milestones)
+## About
 
-## Build (example)
-Install a GLUT distribution (e.g., freeglut) and make sure the libraries are available.
+This project was developed at the **Faculty of Computers and Artificial Intelligence, Benha University** — **AI Department**, **3rd Level**.
 
-### MinGW (example)
-g++ src/*.cpp -Iinclude -lfreeglut -lopengl32 -lglu32 -o EndlessRunner3D
+## Team Members
 
-### Visual Studio
-Create a console project, add all src/*.cpp, add include/ to include dirs,
-and link against OpenGL32.lib, Glu32.lib, and freeglut.lib (or glut32.lib).
-
-## Controls
-- Enter: start
-- A/D or Left/Right: change lane
-- Space or Up: jump
-- R: restart after Game Over
-- Esc: quit
+- Ahmed Hazem Elabady
+- Ahmed Badwy
+- Alaa Osama Mohamed Bekhit
+- Abanoub Rizk Gad
+- Abdelrahman Reda Abdelrahman Abdelstar
+- Omnia Mohamed Ahmed Naqeeb
