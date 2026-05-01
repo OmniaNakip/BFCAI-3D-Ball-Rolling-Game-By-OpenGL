@@ -8,25 +8,25 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "-std=c++17",
-                "${workspaceFolder}/3d_ball_rolling_game/src/main.cpp",
-                "${workspaceFolder}/3d_ball_rolling_game/src/Ball.cpp",
-                "${workspaceFolder}/3d_ball_rolling_game/src/Ground.cpp",
-                "${workspaceFolder}/3d_ball_rolling_game/src/Obstacle.cpp",
-                "${workspaceFolder}/3d_ball_rolling_game/src/Scene.cpp",
-                "${workspaceFolder}/3d_ball_rolling_game/src/camera/Camera.cpp",
-                "${workspaceFolder}/3d_ball_rolling_game/external/GLAD/src/glad.c",
-                "-I${workspaceFolder}/3d_ball_rolling_game/external/GLAD/include",
-                "-I${workspaceFolder}/3d_ball_rolling_game/external/glfw-3.4.bin.WIN64/include",
-                "-I${workspaceFolder}/3d_ball_rolling_game",
-                "-I${workspaceFolder}/3d_ball_rolling_game/src",
-                "-L${workspaceFolder}/3d_ball_rolling_game/external/glfw-3.4.bin.WIN64/lib-mingw-w64",
+                "${workspaceFolder}/main.cpp",
+                "${workspaceFolder}/src/Ball.cpp",
+                "${workspaceFolder}/src/Ground.cpp",
+                "${workspaceFolder}/src/Obstacle.cpp",
+                "${workspaceFolder}/src/Scene.cpp",
+                "${workspaceFolder}/src/camera/Camera.cpp",
+                "${workspaceFolder}/external/GLAD/src/glad.c",
+                "-I${workspaceFolder}/external/GLAD/include",
+                "-I${workspaceFolder}/external/glfw-3.4.bin.WIN64/include",
+                "-I${workspaceFolder}",
+                "-I${workspaceFolder}/src",
+                "-L${workspaceFolder}/external/glfw-3.4.bin.WIN64/lib-mingw-w64",
                 "-lglfw3dll",
                 "-lopengl32",
                 "-o",
-                "${workspaceFolder}/3d_ball_rolling_game/src/main.exe"
+                "${workspaceFolder}/main.exe"
             ],
             "options": {
-                "cwd": "${workspaceFolder}/3d_ball_rolling_game/src"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"
@@ -44,26 +44,26 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}/3d_ball_rolling_game/src/main.cpp",
-                "${workspaceFolder}/3d_ball_rolling_game/src/Ball.cpp",
-                "${workspaceFolder}/3d_ball_rolling_game/src/Ground.cpp",
-                "${workspaceFolder}/3d_ball_rolling_game/src/Obstacle.cpp",
-                "${workspaceFolder}/3d_ball_rolling_game/src/Scene.cpp",
-                "${workspaceFolder}/3d_ball_rolling_game/src/camera/Camera.cpp",
-                "${workspaceFolder}/3d_ball_rolling_game/external/GLAD/src/glad.c",
-                "-I${workspaceFolder}/3d_ball_rolling_game/external/GLAD/include",
-                "-I${workspaceFolder}/3d_ball_rolling_game/external/glfw-3.4.bin.WIN64/include",
-                "-I${workspaceFolder}/3d_ball_rolling_game",
-                "-I${workspaceFolder}/3d_ball_rolling_game/src",
-                "-L${workspaceFolder}/3d_ball_rolling_game/external/glfw-3.4.bin.WIN64/lib-mingw-w64",
+                "${workspaceFolder}/main.cpp",
+                "${workspaceFolder}/src/Ball.cpp",
+                "${workspaceFolder}/src/Ground.cpp",
+                "${workspaceFolder}/src/Obstacle.cpp",
+                "${workspaceFolder}/src/Scene.cpp",
+                "${workspaceFolder}/src/camera/Camera.cpp",
+                "${workspaceFolder}/external/GLAD/src/glad.c",
+                "-I${workspaceFolder}/external/GLAD/include",
+                "-I${workspaceFolder}/external/glfw-3.4.bin.WIN64/include",
+                "-I${workspaceFolder}",
+                "-I${workspaceFolder}/src",
+                "-L${workspaceFolder}/external/glfw-3.4.bin.WIN64/lib-mingw-w64",
                 "-lglfw3dll",
                 "-lopengl32",
                 "-lstdc++",
                 "-o",
-                "${workspaceFolder}/3d_ball_rolling_game/src/main.exe"
+                "${workspaceFolder}/main.exe"
             ],
             "options": {
-                "cwd": "${workspaceFolder}/3d_ball_rolling_game/src"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"

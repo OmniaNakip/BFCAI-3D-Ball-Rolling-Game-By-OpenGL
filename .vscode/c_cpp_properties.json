@@ -3,10 +3,10 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/3d_ball_rolling_game",
-                "${workspaceFolder}/3d_ball_rolling_game/src",
-                "${workspaceFolder}/3d_ball_rolling_game/external/GLAD/include",
-                "${workspaceFolder}/3d_ball_rolling_game/external/glfw-3.4.bin.WIN64/include",
+                "${workspaceFolder}",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/external/GLAD/include",
+                "${workspaceFolder}/external/glfw-3.4.bin.WIN64/include",
                 "C:/msys64/mingw64/include/c++/13.2.0",
                 "C:/msys64/mingw64/include/c++/13.2.0/x86_64-w64-mingw32",
                 "C:/msys64/mingw64/include/c++/13.2.0/backward",
