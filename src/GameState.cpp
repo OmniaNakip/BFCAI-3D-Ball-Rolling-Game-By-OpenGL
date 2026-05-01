@@ -16,11 +16,13 @@ GameState::Screen g_screen = GameState::Screen::Menu;
 int g_windowWidth = Constants::kWindowWidth;
 int g_windowHeight = Constants::kWindowHeight;
 float g_scoreSeconds = 0.0f;
+int g_coinCount = 0;
 
 void ResetRun() {
   Player::Initialize();
   Environment::Initialize();
   g_scoreSeconds = 0.0f;
+  g_coinCount = 0;
 }
 
 void DrawBitmapText(float x, float y, const char* text) {
@@ -71,6 +73,45 @@ void RenderOverlay(const char* line1, const char* line2, const char* line3) {
   }
 }
 
+void RenderHud() {
+  const GLboolean lightingEnabled = glIsEnabled(GL_LIGHTING);
+  const GLboolean depthEnabled = glIsEnabled(GL_DEPTH_TEST);
+
+  glDisable(GL_LIGHTING);
+  glDisable(GL_DEPTH_TEST);
+
+  glMatrixMode(GL_PROJECTION);
+  glPushMatrix();
+  glLoadIdentity();
+  gluOrtho2D(0.0, g_windowWidth, 0.0, g_windowHeight);
+
+  glMatrixMode(GL_MODELVIEW);
+  glPushMatrix();
+  glLoadIdentity();
+
+  glColor3f(1.0f, 1.0f, 1.0f);
+
+  char scoreLine[64];
+  char coinLine[64];
+  std::snprintf(scoreLine, sizeof(scoreLine), "Score: %.1f", g_scoreSeconds);
+  std::snprintf(coinLine, sizeof(coinLine), "Coins: %d", g_coinCount);
+
+  DrawBitmapText(12.0f, g_windowHeight - 24.0f, scoreLine);
+  DrawBitmapText(12.0f, g_windowHeight - 46.0f, coinLine);
+
+  glPopMatrix();
+  glMatrixMode(GL_PROJECTION);
+  glPopMatrix();
+  glMatrixMode(GL_MODELVIEW);
+
+  if (depthEnabled) {
+    glEnable(GL_DEPTH_TEST);
+  }
+  if (lightingEnabled) {
+    glEnable(GL_LIGHTING);
+  }
+}
+
 void RenderScene3d() {
   const PlayerState player = Player::GetState();
   Camera::Apply(g_windowWidth, g_windowHeight, player.x, player.y, player.z);
@@ -84,6 +125,7 @@ void UpdateGameplay(float dt) {
   g_scoreSeconds += dt;
 
   const PlayerState player = Player::GetState();
+  g_coinCount += Environment::CollectCoins(player.x, player.y, player.z, player.radius);
   const std::vector<Physics::Aabb> obstacles = Environment::GetObstacleAabbs();
   for (const Physics::Aabb& box : obstacles) {
     if (Physics::CheckCircleAabb(player.x, player.y, player.z, player.radius, box)) {
@@ -112,11 +154,16 @@ void Render() {
 
   RenderScene3d();
 
+  if (g_screen == Screen::Playing) {
+    RenderHud();
+  }
+
   if (g_screen == Screen::Menu) {
     RenderOverlay("Endless Runner 3D", "Press Enter to Start", nullptr);
   } else if (g_screen == Screen::GameOver) {
     char scoreLine[64];
-    std::snprintf(scoreLine, sizeof(scoreLine), "Score: %.1f", g_scoreSeconds);
+    std::snprintf(scoreLine, sizeof(scoreLine), "Score: %.1f  Coins: %d", g_scoreSeconds,
+                  g_coinCount);
     RenderOverlay("Game Over", "Press R to Restart", scoreLine);
   }
 
