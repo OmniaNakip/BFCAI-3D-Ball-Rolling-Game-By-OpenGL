@@ -159,7 +159,9 @@ namespace GameState {
     }
 
     void Update(float dt) {
-        UpdateGameplay(dt);
+        if (g_screen == Screen::Menu || g_screen == Screen::Playing) {
+            UpdateGameplay(dt);
+        }
     }
 
     void Render() {
