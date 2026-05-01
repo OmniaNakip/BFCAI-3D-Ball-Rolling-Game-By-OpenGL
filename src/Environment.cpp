@@ -1,41 +1,11 @@
 #include <GL/glut.h>
-#include <vector>
-
 #include "Constants.h"
 #include "Environment.h"
+#include "objects/Asteroids.h"
+#include "objects/Coins.h"
 
 namespace {
-struct Obstacle {
-  float x;
-  float z;
-  float size;
-  float rotation;
-};
-
-struct Coin {
-  float x;
-  float z;
-};
-
-std::vector<Obstacle> g_obstacles;
-std::vector<Coin> g_coins;
 float g_roadOffset = 0.0f;
-
-void AddObstacle(int laneIndex, float z, int index) {
-  Obstacle obstacle;
-  obstacle.x = static_cast<float>(laneIndex) * Constants::kLaneWidth;
-  obstacle.z = z;
-  obstacle.size = Constants::kObstacleSize;
-  obstacle.rotation = static_cast<float>((index * 37) % 360);
-  g_obstacles.push_back(obstacle);
-}
-
-void AddCoin(int laneIndex, float z) {
-  Coin coin;
-  coin.x = static_cast<float>(laneIndex) * Constants::kLaneWidth;
-  coin.z = z;
-  g_coins.push_back(coin);
-}
 
 void DrawGround(float halfWidth) {
   const float backZ = Constants::kGroundBackZ;
@@ -99,61 +69,13 @@ void DrawRoadEdges(float halfWidth) {
   }
 }
 
-void DrawObstacles() {
-  glColor3f(Constants::kAsteroidColorR, Constants::kAsteroidColorG, Constants::kAsteroidColorB);
-  for (const Obstacle& obstacle : g_obstacles) {
-    const float baseScale = obstacle.size * 0.6f;
-    glPushMatrix();
-    glTranslatef(obstacle.x, Constants::kGroundY + (obstacle.size * 0.6f), obstacle.z);
-    glRotatef(obstacle.rotation, 0.3f, 1.0f, 0.2f);
-    glScalef(
-        baseScale * Constants::kAsteroidScaleX,
-        baseScale * Constants::kAsteroidScaleY,
-        baseScale * Constants::kAsteroidScaleZ);
-    glutSolidIcosahedron();
-    glPopMatrix();
-  }
-}
-
-void DrawCoins() {
-  const GLboolean lightingEnabled = glIsEnabled(GL_LIGHTING);
-  if (lightingEnabled) {
-    glDisable(GL_LIGHTING);
-  }
-
-  glColor3f(Constants::kCoinColorR, Constants::kCoinColorG, Constants::kCoinColorB);
-  for (const Coin& coin : g_coins) {
-    glPushMatrix();
-    glTranslatef(coin.x, Constants::kCoinHeight, coin.z);
-    glutSolidSphere(Constants::kCoinRadius, 16, 16);
-    glPopMatrix();
-  }
-
-  if (lightingEnabled) {
-    glEnable(GL_LIGHTING);
-  }
-}
 }  // namespace
 
 namespace Environment {
 void Initialize() {
-  g_obstacles.clear();
-  g_coins.clear();
   g_roadOffset = 0.0f;
-
-  const int obstacleCount = 5;
-  for (int i = 0; i < obstacleCount; ++i) {
-    const int laneIndex = (i % Constants::kLaneCount) - (Constants::kLaneCount / 2);
-    const float z = Constants::kObstacleStartZ - (Constants::kObstacleSpacing * i);
-    AddObstacle(laneIndex, z, i);
-  }
-
-  for (int i = 0; i < Constants::kCoinCount; ++i) {
-    const int laneIndex = (i % Constants::kLaneCount) - (Constants::kLaneCount / 2);
-    const float z = Constants::kCoinStartZ - (Constants::kCoinSpacing * i);
-    AddCoin(laneIndex, z);
-  }
-
+  Asteroids::Initialize();
+  Coins::Initialize();
 }
 
 void Update(float dt) {
@@ -165,23 +87,8 @@ void Update(float dt) {
     g_roadOffset -= segmentStep;
   }
 
-  const float obstacleWrap =
-      Constants::kObstacleSpacing * static_cast<float>(g_obstacles.size());
-  for (Obstacle& obstacle : g_obstacles) {
-    obstacle.z += travel;
-    if (obstacle.z > Constants::kObstacleResetZ) {
-      obstacle.z -= obstacleWrap;
-    }
-  }
-
-  const float coinWrap = Constants::kCoinSpacing * static_cast<float>(g_coins.size());
-  for (Coin& coin : g_coins) {
-    coin.z += travel;
-    if (coin.z > Constants::kObstacleResetZ) {
-      coin.z -= coinWrap;
-    }
-  }
-
+  Asteroids::Update(dt);
+  Coins::Update(dt);
 }
 
 void Draw() {
@@ -189,44 +96,15 @@ void Draw() {
 
   DrawGround(halfWidth);
   DrawRoadEdges(halfWidth);
-  DrawObstacles();
-  DrawCoins();
+  Asteroids::Draw();
+  Coins::Draw();
 }
 
 std::vector<Physics::Aabb> GetObstacleAabbs() {
-  std::vector<Physics::Aabb> boxes;
-  boxes.reserve(g_obstacles.size());
-  for (const Obstacle& obstacle : g_obstacles) {
-    const float half = obstacle.size * 0.5f;
-    Physics::Aabb box;
-    box.minX = obstacle.x - half;
-    box.maxX = obstacle.x + half;
-    box.minY = Constants::kGroundY;
-    box.maxY = Constants::kGroundY + obstacle.size;
-    box.minZ = obstacle.z - half;
-    box.maxZ = obstacle.z + half;
-    boxes.push_back(box);
-  }
-  return boxes;
+  return Asteroids::GetObstacleAabbs();
 }
 
 int CollectCoins(float cx, float cy, float cz, float radius) {
-  int collected = 0;
-  const float wrapDistance = Constants::kCoinSpacing * static_cast<float>(g_coins.size());
-  for (Coin& coin : g_coins) {
-    Physics::Aabb box;
-    box.minX = coin.x - Constants::kCoinRadius;
-    box.maxX = coin.x + Constants::kCoinRadius;
-    box.minY = Constants::kCoinHeight - Constants::kCoinRadius;
-    box.maxY = Constants::kCoinHeight + Constants::kCoinRadius;
-    box.minZ = coin.z - Constants::kCoinRadius;
-    box.maxZ = coin.z + Constants::kCoinRadius;
-
-    if (Physics::CheckCircleAabb(cx, cy, cz, radius, box)) {
-      ++collected;
-      coin.z -= wrapDistance;
-    }
-  }
-  return collected;
+  return Coins::Collect(cx, cy, cz, radius);
 }
 }  // namespace Environment
