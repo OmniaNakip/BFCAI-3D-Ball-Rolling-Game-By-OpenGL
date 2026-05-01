@@ -1,12 +1,7 @@
 #include <GL/glut.h>
-#include <cstdio>
-#include <chrono>
 
 #include "Constants.h"
 #include "GameState.h"
-
-namespace {
-auto g_lastTime = std::chrono::high_resolution_clock::now();
 
 void DisplayCallback() {
   GameState::Render();
@@ -25,23 +20,12 @@ void ReshapeCallback(int width, int height) {
 }
 
 void TimerCallback(int value) {
-  auto currentTime = std::chrono::high_resolution_clock::now();
-  auto elapsed = std::chrono::duration<float>(currentTime - g_lastTime);
-  float dt = elapsed.count();
-  
-  if (dt > 0.05f) {
-    dt = 0.05f;
-  }
-  
-  g_lastTime = currentTime;
-  
-  GameState::Update(dt);
+  GameState::Update(Constants::kFrameSeconds);
   glutPostRedisplay();
-  
   glutTimerFunc(Constants::kFrameMs, TimerCallback, 0);
 }
 
-void InitializeOpenGL(int argc, char* argv[]) {
+int main(int argc, char* argv[]) {
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
   glutInitWindowSize(Constants::kWindowWidth, Constants::kWindowHeight);
@@ -49,10 +33,6 @@ void InitializeOpenGL(int argc, char* argv[]) {
   glutCreateWindow(Constants::kWindowTitle);
   
   glEnable(GL_DEPTH_TEST);
-  glEnable(GL_LIGHTING);
-  glEnable(GL_LIGHT0);
-  glEnable(GL_LIGHT1);
-  
   glClearColor(
     Constants::kClearColorR,
     Constants::kClearColorG,
@@ -65,13 +45,8 @@ void InitializeOpenGL(int argc, char* argv[]) {
   glutSpecialFunc(SpecialCallback);
   glutReshapeFunc(ReshapeCallback);
   glutTimerFunc(Constants::kFrameMs, TimerCallback, 0);
-}
-}  // namespace
-
-int main(int argc, char* argv[]) {
-  InitializeOpenGL(argc, argv);
-  GameState::Initialize();
   
+  GameState::Initialize();
   glutMainLoop();
   
   return 0;
