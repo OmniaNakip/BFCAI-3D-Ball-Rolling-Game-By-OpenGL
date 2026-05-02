@@ -3,7 +3,7 @@
 
 namespace Coins {
 void Initialize();
-void Update(float dt);
+void Update(float dt, float currentSpeed);
 void Draw();
 int Collect(float cx, float cy, float cz, float radius);
 }  // namespace Coins

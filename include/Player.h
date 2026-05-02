@@ -9,11 +9,12 @@ struct PlayerState {
   float velocityY;
   bool grounded;
   int lane;
+  float forwardRotation;  // Rotation for wheel rolling animation
 };
 
 namespace Player {
 void Initialize();
-void Update(float dt);
+void Update(float dt, float currentSpeed);
 void Draw();
 void MoveLeft();
 void MoveRight();

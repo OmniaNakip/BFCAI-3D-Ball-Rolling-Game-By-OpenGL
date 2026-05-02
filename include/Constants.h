@@ -44,6 +44,7 @@ constexpr float kObstacleStartZ = -40.0f;
 constexpr float kObstacleResetZ = 6.0f;
 constexpr float kObstacleSpacing = 12.0f;
 constexpr float kObstacleSpeed = 8.0f;
+constexpr float kSpeedAccelerationRate = 0.2f;  // Speed increases by this factor per second
 
 constexpr float kAsteroidScaleX = 1.0f;
 constexpr float kAsteroidScaleY = 0.8f;

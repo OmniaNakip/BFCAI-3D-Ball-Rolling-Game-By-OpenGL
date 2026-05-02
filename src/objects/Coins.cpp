@@ -10,6 +10,7 @@ namespace {
 struct Coin {
   float x;
   float z;
+  float rotation;  // Rotation angle for spinning animation
 };
 
 std::vector<Coin> g_coins;
@@ -18,6 +19,7 @@ void AddCoin(int laneIndex, float z) {
   Coin coin;
   coin.x = static_cast<float>(laneIndex) * Constants::kLaneWidth;
   coin.z = z;
+  coin.rotation = 0.0f;
   g_coins.push_back(coin);
 }
 }  // namespace
@@ -32,11 +34,17 @@ void Initialize() {
   }
 }
 
-void Update(float dt) {
-  const float travel = Constants::kObstacleSpeed * dt;
+void Update(float dt, float currentSpeed) {
+  const float travel = currentSpeed * dt;
   const float wrapDistance = Constants::kCoinSpacing * static_cast<float>(g_coins.size());
+  const float rotationSpeed = 180.0f;  // Degrees per second
+  
   for (Coin& coin : g_coins) {
     coin.z += travel;
+    coin.rotation += rotationSpeed * dt;
+    if (coin.rotation > 360.0f) {
+      coin.rotation -= 360.0f;
+    }
     if (coin.z > Constants::kObstacleResetZ) {
       coin.z -= wrapDistance;
     }
@@ -53,6 +61,9 @@ void Draw() {
   for (const Coin& coin : g_coins) {
     glPushMatrix();
     glTranslatef(coin.x, Constants::kCoinHeight, coin.z);
+    glRotatef(coin.rotation, 1.0f, 0.0f, 0.0f);  // Rotate about X-axis for spinning effect
+    // Scale to create a coin-like disk shape (flat and circular)
+    glScalef(1.0f, 0.2f, 1.0f);
     glutSolidSphere(Constants::kCoinRadius, 16, 16);
     glPopMatrix();
   }

@@ -7,6 +7,7 @@
 
 namespace {
 float g_roadOffset = 0.0f;
+float g_elapsedTime = 0.0f;
 
 void DrawGround(float halfWidth) {
   const float backZ = Constants::kGroundBackZ;
@@ -75,12 +76,20 @@ void DrawRoadEdges(float halfWidth) {
 namespace Environment {
 void Initialize() {
   g_roadOffset = 0.0f;
+  g_elapsedTime = 0.0f;
   Asteroids::Initialize();
   Coins::Initialize();
 }
 
+float GetCurrentSpeed() {
+  return Constants::kObstacleSpeed * (1.0f + Constants::kSpeedAccelerationRate * g_elapsedTime);
+}
+
 void Update(float dt) {
-  const float travel = Constants::kObstacleSpeed * dt;
+  g_elapsedTime += dt;
+  
+  const float currentSpeed = GetCurrentSpeed();
+  const float travel = currentSpeed * dt;
   const float segmentStep = Constants::kEdgeSegmentLength + Constants::kEdgeSegmentGap;
 
   g_roadOffset += travel;
@@ -88,8 +97,8 @@ void Update(float dt) {
     g_roadOffset -= segmentStep;
   }
 
-  Asteroids::Update(dt);
-  Coins::Update(dt);
+  Asteroids::Update(dt, currentSpeed);
+  Coins::Update(dt, currentSpeed);
 }
 
 void Draw() {

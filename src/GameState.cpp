@@ -133,8 +133,9 @@ namespace {
     }
 
     void UpdateGameplay(float dt) {
-        Player::Update(dt);
         Environment::Update(dt);
+        const float currentSpeed = Environment::GetCurrentSpeed();
+        Player::Update(dt, currentSpeed);
 
         if (g_screen == GameState::Screen::Playing) {
             g_scoreSeconds += dt;
