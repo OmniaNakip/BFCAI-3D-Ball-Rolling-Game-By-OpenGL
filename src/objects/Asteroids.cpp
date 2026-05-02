@@ -40,9 +40,14 @@ void Update(float dt, float currentSpeed) {
   const float travel = currentSpeed * dt;
   const float wrapDistance =
       Constants::kObstacleSpacing * static_cast<float>(g_asteroids.size());
+  const float rotationSpeed = 120.0f;  // Degrees per second
 
   for (Asteroid& asteroid : g_asteroids) {
     asteroid.z += travel;
+    asteroid.rotation += rotationSpeed * dt;
+    if (asteroid.rotation > 360.0f) {
+      asteroid.rotation -= 360.0f;
+    }
     if (asteroid.z > Constants::kObstacleResetZ) {
       asteroid.z -= wrapDistance;
     }
