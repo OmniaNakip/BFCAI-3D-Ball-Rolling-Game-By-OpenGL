@@ -15,6 +15,10 @@ void SpecialCallback(int key, int x, int y) {
     GameState::OnSpecialDown(key, x, y);
 }
 
+void MouseCallback(int button, int state, int x, int y) {
+    GameState::OnMouse(button, state, x, y);
+}
+
 void ReshapeCallback(int width, int height) {
     GameState::OnResize(width, height);
 }
@@ -45,6 +49,7 @@ int main(int argc, char* argv[]) {
     glutDisplayFunc(DisplayCallback);
     glutKeyboardFunc(KeyboardCallback);
     glutSpecialFunc(SpecialCallback);
+    glutMouseFunc(MouseCallback);
     glutReshapeFunc(ReshapeCallback);
     glutTimerFunc(Constants::kFrameMs, TimerCallback, 0);
     

@@ -1,0 +1,42 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe build project",
+            "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "-std=c++17",
+                "-Iinclude",
+                "src/main.cpp",
+                "src/GameState.cpp",
+                "src/Player.cpp",
+                "src/Environment.cpp",
+                "src/objects/Coins.cpp",
+                "src/objects/Asteroids.cpp",
+                "src/Camera.cpp",
+                "src/Physics.cpp",
+                "src/Graphics.cpp",
+                "src/UI.cpp",
+                "-lfreeglut",
+                "-lopengl32",
+                "-lglu32",
+                "-o",
+                "bin/EndlessRunner3D.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Builds all sources with project include paths."
+        }
+    ],
+    "version": "2.0.0"
+}

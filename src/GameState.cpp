@@ -11,6 +11,7 @@
 #include "../include/Graphics.h"
 #include "../include/Physics.h"
 #include "../include/Player.h"
+#include "../include/UI.h"
 
 namespace {
     GameState::Screen g_screen = GameState::Screen::Menu;
@@ -158,6 +159,11 @@ namespace GameState {
         g_screen = Screen::Menu;
     }
 
+    void StartGame() {
+        ResetRun();
+        g_screen = Screen::Playing;
+    }
+
     void Update(float dt) {
         if (g_screen == Screen::Menu || g_screen == Screen::Playing) {
             UpdateGameplay(dt);
@@ -186,7 +192,10 @@ namespace GameState {
         }
 
         if (g_screen == Screen::Menu) {
-            RenderOverlay("START", "MENU", "Endless Runner 3D", "Press Enter to Start", nullptr);
+            UI::RenderMenu(g_windowWidth, g_windowHeight);
+        }
+        else if (g_screen == Screen::About) {
+            UI::RenderAbout(g_windowWidth, g_windowHeight);
         }
         else if (g_screen == Screen::GameOver) {
             char scoreLine[64];
@@ -200,8 +209,15 @@ namespace GameState {
     void OnKeyDown(unsigned char key, int, int) {
         if (key == 27) std::exit(0);
         if (g_screen == Screen::Menu && key == 13) {
-            ResetRun();
-            g_screen = Screen::Playing;
+            StartGame();
+            return;
+        }
+        if (g_screen == Screen::Menu && (key == 'a' || key == 'A')) {
+            g_screen = Screen::About;
+            return;
+        }
+        if (g_screen == Screen::About && key == 27) {
+            g_screen = Screen::Menu;
             return;
         }
         if (g_screen == Screen::GameOver && (key == 'r' || key == 'R')) {
@@ -220,6 +236,27 @@ namespace GameState {
         if (key == GLUT_KEY_LEFT) Player::MoveLeft();
         else if (key == GLUT_KEY_RIGHT) Player::MoveRight();
         else if (key == GLUT_KEY_UP) Player::Jump();
+    }
+
+    void OnMouse(int button, int state, int x, int y) {
+        if (g_screen == Screen::Menu) {
+            UI::Action action = UI::HandleMenuMouse(button, state, x, y, g_windowWidth, g_windowHeight);
+            if (action == UI::Action::Start) {
+                StartGame();
+            }
+            else if (action == UI::Action::About) {
+                g_screen = Screen::About;
+            }
+            else if (action == UI::Action::Quit) {
+                std::exit(0);
+            }
+        }
+        else if (g_screen == Screen::About) {
+            UI::Action action = UI::HandleAboutMouse(button, state, x, y, g_windowWidth, g_windowHeight);
+            if (action == UI::Action::Back) {
+                g_screen = Screen::Menu;
+            }
+        }
     }
 
     void OnResize(int width, int height) {
