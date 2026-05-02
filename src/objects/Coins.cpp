@@ -32,8 +32,8 @@ void Initialize() {
   }
 }
 
-void Update(float dt) {
-  const float travel = Constants::kObstacleSpeed * dt;
+void Update(float dt, float currentSpeed) {
+  const float travel = currentSpeed * dt;
   const float wrapDistance = Constants::kCoinSpacing * static_cast<float>(g_coins.size());
   for (Coin& coin : g_coins) {
     coin.z += travel;

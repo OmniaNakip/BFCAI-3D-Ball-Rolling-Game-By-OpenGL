@@ -36,8 +36,8 @@ void Initialize() {
   }
 }
 
-void Update(float dt) {
-  const float travel = Constants::kObstacleSpeed * dt;
+void Update(float dt, float currentSpeed) {
+  const float travel = currentSpeed * dt;
   const float wrapDistance =
       Constants::kObstacleSpacing * static_cast<float>(g_asteroids.size());
 

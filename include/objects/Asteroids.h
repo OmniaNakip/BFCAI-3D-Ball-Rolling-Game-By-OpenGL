@@ -7,7 +7,7 @@
 
 namespace Asteroids {
 void Initialize();
-void Update(float dt);
+void Update(float dt, float currentSpeed);
 void Draw();
 std::vector<Physics::Aabb> GetObstacleAabbs();
 }  // namespace Asteroids
